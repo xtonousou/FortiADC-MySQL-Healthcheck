@@ -12,12 +12,12 @@ declare -r status_file="/opt/space/fortiadc_mysql_healthcheck_status.txt"
 declare result
 
 echo "$$" >| "${pid_file}"
-result=$(/bin/timeout --preserve-status "${tout}" /bin/mysql -LBANqs -u "${user}" -p"${password}" -h "${host}" -e "SHOW DATABASES" 2>&1; true)
+result=$(command timeout --preserve-status "${tout}" command mysql -LBANqs -u "${user}" -p"${password}" -h "${host}" -e "SHOW DATABASES" 2>&1; command true)
 
-if grep -q "information_schema" <<< "${result}"; then
+if command grep -q "information_schema" <<< "${result}"; then
     echo -n "200 OK" >| "${status_file}"
 else
     echo -n "503 Service Unavailable" >| "${status_file}"
 fi
 
-exit 0
+command exit 0

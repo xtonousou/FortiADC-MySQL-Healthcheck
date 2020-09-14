@@ -9,13 +9,13 @@ declare -r lport=8888
 
 echo "$$" >| "${pid_file}"
 
-hash command nc &>/dev/null \
+command hash command nc &>/dev/null \
     || {
         echo "nc command is not available. exiting .." 1>&2
         exit 1
     }
 
-hash command mysql &>/dev/null \
+command hash command mysql &>/dev/null \
     || {
         echo "mysql command is not available. exiting .." 1>&2
         exit 2
@@ -23,7 +23,7 @@ hash command mysql &>/dev/null \
 
 
 while :; do
-    printf "HTTP/1.1 $(cat "${status_file}")\n\n" | command nc -n -w 2 -I 1 -N -t -4 -l "${lport}" >/dev/null
+    command printf "HTTP/1.1 $(command cat "${status_file}")\n\n" | command nc -n -w 2 -I 1 -N -t -4 -l "${lport}" >/dev/null
 done
 
-exit 0
+command exit 0
