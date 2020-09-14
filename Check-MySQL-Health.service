@@ -1,0 +1,8 @@
+[Unit]
+Description=MySQL Healthcheck
+After=mariadb.service
+
+[Service]
+Type=simple
+ExecStart=-/bin/bash --norc /opt/space/Check-MySQL-Health.sh
+ExecStop=-/bin/pkill --full Check-MySQL-Health

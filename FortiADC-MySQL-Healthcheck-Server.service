@@ -1,0 +1,12 @@
+[Unit]
+Description=FortiADC MySQL Database Healthcheck Server
+After=mariadb.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash --norc /opt/space/FortiADC-MySQL-Healthcheck-Server.sh
+ExecStop=/bin/pkill --full FortiADC-MySQL-Healthcheck-Server
+Restart=always
+
+[Install]
+WantedBy=network-online.target

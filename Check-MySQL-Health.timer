@@ -1,0 +1,11 @@
+[Unit]
+Description=FortiADC MySQL Database Healthcheck
+After=mariadb.service
+
+[Timer]
+OnUnitInactiveSec=3s
+OnBootSec=1s
+AccuracySec=1us
+
+[Install]
+WantedBy=timers.target
