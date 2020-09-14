@@ -1,6 +1,6 @@
 [Unit]
 Description=FortiADC MySQL Database Healthcheck
-After=mariadb.service
+After=FortiADC-MySQL-Healthcheck-Server.service
 
 [Timer]
 OnUnitInactiveSec=3s
