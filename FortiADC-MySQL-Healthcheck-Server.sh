@@ -23,7 +23,9 @@ command hash command mysql &>/dev/null \
 
 
 while :; do
-    command printf "HTTP/1.1 $(command cat "${status_file}")\n\n" | command nc -n -w 2 -I 1 -N -t -4 -l "${lport}" >/dev/null
+	# Centos 8.2 does not support -N and -I arguments
+    # command printf "HTTP/1.1 $(command cat "${status_file}")\n\n" | command nc -n -w 2 -I 1 -N -t -4 -l "${lport}" >/dev/null
+    command printf "HTTP/1.1 $(command cat "${status_file}")\n\n" | command nc -n -w 2 -t -4 -l "${lport}" >/dev/null
 done
 
 command exit 0
