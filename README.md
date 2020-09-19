@@ -1,28 +1,23 @@
 # FortiADC-MySQL-Healthcheck
 Solution for MySQL healthcheck on FortiADC using bash, ncat, mysql and systemd.
 
-## Usage
+## Installation
 
-```bash
-xtonousou:/tmp $ sudo systemctl stop mariadb; date
-Tue Sep 15 01:23:56 AM EEST 2020
-xtonousou:/tmp $ curl -I http://127.0.0.1:8888/; date
-HTTP/1.1 200 OK
+### Execute the following commands as root on each database node
 
-Tue Sep 15 01:23:58 AM EEST 2020
-xtonousou:/tmp $ curl -I http://127.0.0.1:8888/; date
-HTTP/1.1 503 Service Unavailable
+1. `mysql -u root -p < requirements.sql`
+2. `bash install.sh`
 
-Tue Sep 15 01:24:04 AM EEST 2020
-xtonousou:/tmp $ sudo systemctl restart mariadb; date
-Tue Sep 15 01:24:10 AM EEST 2020
-xtonousou:/tmp $ curl -I http://127.0.0.1:8888/; date
-HTTP/1.1 503 Service Unavailable
+![Healthcheck Systemd Service](FortiADC/FortiADC-Healthcheck.PNG "Healthcheck Systemd Service")
+![Healthcheck Systemd Timer](FortiADC/MySQL-Healthcheck-Timer.PNG "Healthcheck Systemd Timer")
 
-Tue Sep 15 01:24:15 AM EEST 2020
-xtonousou:/tmp $ curl -I http://127.0.0.1:8888/; date
-HTTP/1.1 200 OK
+### Set up the healthcheck on FortiADC
 
-Tue Sep 15 01:24:16 AM EEST 2020
-xtonousou:/tmp $
-```
+> Find the required script for FortiADC [here](FortiADC/HealthCheckScript.sh)
+
+![Healthcheck Script 1](FortiADC/HealthCheckScript1.PNG "Healthcheck Script 1")
+![Healthcheck Script 2](FortiADC/HealthCheckScript2.PNG "Healthcheck Script 2")
+![Healthcheck 1](FortiADC/Healthcheck1.PNG "Healthcheck 1")
+![Healthcheck 2](FortiADC/Healthcheck2.PNG "Healthcheck 2")
+![Real Server Pool](FortiADC/Real-Server-Pool.PNG "Real Server Pool")
+![Healthcheck Monitor](FortiADC/Healthcheck-Monitor.PNG "Healthcheck Monitor")
